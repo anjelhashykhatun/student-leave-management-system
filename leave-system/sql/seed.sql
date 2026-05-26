@@ -7,7 +7,7 @@ USE leave_system;
 -- ============================================================
 -- 班级数据
 -- ============================================================
-INSERT INTO class (class_id, class_name, department, grade) VALUES
+INSERT INTO Class (class_id, class_name, department, grade) VALUES
 ('CS2024', '计算机科学2024班', '计算机与信息工程学院', '2024'),
 ('SE2024', '软件工程2024班',   '计算机与信息工程学院', '2024'),
 ('DS2023', '数据科学2023班',   '计算机与信息工程学院', '2023');
@@ -15,7 +15,7 @@ INSERT INTO class (class_id, class_name, department, grade) VALUES
 -- ============================================================
 -- 学生数据 (密码都是 123456)
 -- ============================================================
-INSERT INTO student (student_id, name, gender, password, phone, email, class_id) VALUES
+INSERT INTO Student (student_id, name, gender, password, phone, email, class_id) VALUES
 ('2024001', '张三', '男', '123456', '13800001001', 'zhangsan@example.com', 'CS2024'),
 ('2024002', '李四', '女', '123456', '13800001002', 'lisi@example.com',     'CS2024'),
 ('2024003', '王五', '男', '123456', '13800001003', 'wangwu@example.com',   'CS2024'),
@@ -28,7 +28,7 @@ INSERT INTO student (student_id, name, gender, password, phone, email, class_id)
 -- ============================================================
 -- 班主任数据 (密码都是 123456)
 -- ============================================================
-INSERT INTO teacher (teacher_id, name, gender, password, phone, email, class_id) VALUES
+INSERT INTO Teacher (teacher_id, name, gender, password, phone, email, class_id) VALUES
 ('T0001', '刘老师', '男', '123456', '13900002001', 'liu@example.com', 'CS2024'),
 ('T0002', '陈老师', '女', '123456', '13900002002', 'chen@example.com', 'SE2024'),
 ('T0003', '黄老师', '男', '123456', '13900002003', 'huang@example.com', NULL);
@@ -36,13 +36,13 @@ INSERT INTO teacher (teacher_id, name, gender, password, phone, email, class_id)
 -- ============================================================
 -- 教务管理员数据 (密码都是 123456)
 -- ============================================================
-INSERT INTO admin (admin_id, name, password, phone, email) VALUES
+INSERT INTO Admin (admin_id, name, password, phone, email) VALUES
 ('A0001', '诸葛老师', '123456', '13700003001', 'zhuge@example.com');
 
 -- ============================================================
 -- 请假记录数据
 -- ============================================================
-INSERT INTO leave_record (student_id, leave_type, start_date, end_date, reason, status, apply_time, teacher_id, approve_time, approve_comment) VALUES
+INSERT INTO LeaveRecord (student_id, leave_type, start_date, end_date, reason, status, apply_time, teacher_id, approve_time, approve_comment) VALUES
 -- 已批准的请假
 ('2024001', '病假', '2025-03-10', '2025-03-12', '感冒发烧，需要休息治疗', '已批准',
  '2025-03-09 08:30:00', 'T0001', '2025-03-09 10:15:00', '已了解情况，准假。注意休养。'),
