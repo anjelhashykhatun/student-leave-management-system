@@ -4,11 +4,22 @@
 -- 作者: 汤俊豪
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS leave_system
+CREATE DATABASE IF NOT EXISTS `student-leave-management-system`
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-USE leave_system;
+USE `student-leave-management-system`;
+
+-- 清理旧对象（方便重复执行）
+DROP VIEW IF EXISTS v_approval_history;
+DROP VIEW IF EXISTS v_class_leave_statistics;
+DROP VIEW IF EXISTS v_pending_leave;
+DROP VIEW IF EXISTS v_student_leave_detail;
+DROP TABLE IF EXISTS LeaveRecord;
+DROP TABLE IF EXISTS Student;
+DROP TABLE IF EXISTS Teacher;
+DROP TABLE IF EXISTS Admin;
+DROP TABLE IF EXISTS Class;
 
 -- ============================================================
 -- 1. 班级表 (Class)
@@ -47,7 +58,7 @@ CREATE TABLE Teacher (
     password   VARCHAR(100) NOT NULL DEFAULT '123456' COMMENT '登录密码',
     phone      VARCHAR(20)  DEFAULT NULL    COMMENT '联系电话',
     email      VARCHAR(100) DEFAULT NULL    COMMENT '电子邮箱',
-    class_id   VARCHAR(20)  DEFAULT NULL    COMMENT '管辖班级编号',
+    class_id   VARCHAR(20)  NOT NULL        COMMENT '管辖班级编号',
     CONSTRAINT fk_teacher_class FOREIGN KEY (class_id) REFERENCES Class(class_id),
     CONSTRAINT uk_teacher_class UNIQUE (class_id),
     CONSTRAINT chk_teacher_gender CHECK (gender IN ('男', '女'))
@@ -78,7 +89,7 @@ CREATE TABLE LeaveRecord (
     reason          TEXT         NOT NULL        COMMENT '请假原因',
     status          ENUM('待审批','已批准','已驳回') NOT NULL DEFAULT '待审批' COMMENT '审批状态',
     apply_time      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '申请时间',
-    teacher_id      VARCHAR(20)  DEFAULT NULL    COMMENT '审批教师编号',
+    teacher_id      VARCHAR(20)  NOT NULL        COMMENT '审批教师编号',
     approve_time    DATETIME     DEFAULT NULL    COMMENT '审批时间',
     approve_comment TEXT         DEFAULT NULL    COMMENT '审批意见',
     CONSTRAINT fk_leave_student  FOREIGN KEY (student_id) REFERENCES Student(student_id),

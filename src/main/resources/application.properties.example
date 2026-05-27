@@ -1,0 +1,27 @@
+# ============================================================
+# 学生请假事务管理系统 - 应用配置模板
+# 复制此文件为 application.properties 并填入实际值
+# ============================================================
+
+server.port=8080
+
+# MySQL 数据源（Druid 连接池）
+spring.datasource.druid.url=jdbc:mysql://localhost:3306/leave_system?useUnicode=true&characterEncoding=utf8mb4&serverTimezone=Asia/Shanghai
+spring.datasource.druid.username=你的数据库用户名
+spring.datasource.druid.password=你的数据库密码
+spring.datasource.druid.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# 连接池大小
+spring.datasource.druid.initial-size=5
+spring.datasource.druid.min-idle=5
+spring.datasource.druid.max-active=20
+spring.datasource.druid.max-wait=60000
+spring.datasource.druid.filters=stat,wall
+
+# MyBatis
+mybatis.mapper-locations=classpath:mapper/*.xml
+mybatis.type-aliases-package=com.studentleave.management.entity
+mybatis.configuration.map-underscore-to-camel-case=true
+mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging.level.com.studentleave.management=debug

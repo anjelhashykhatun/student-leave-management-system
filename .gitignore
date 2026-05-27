@@ -36,3 +36,6 @@ build/
 *_backup.docx
 原始*
 temp_*
+
+### Sensitive config ###
+src/main/resources/application.properties
