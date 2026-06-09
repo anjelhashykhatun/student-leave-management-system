@@ -29,7 +29,7 @@ CREATE TABLE Class (
     class_name VARCHAR(100) NOT NULL        COMMENT '班级名称',
     department VARCHAR(100) NOT NULL        COMMENT '所属院系',
     grade      VARCHAR(10)  NOT NULL        COMMENT '年级'
-) ENGINE=InnoDB COMMENT='班级表';
+)COMMENT='班级表';
 
 -- ============================================================
 -- 2. 学生表 (Student)
@@ -62,7 +62,7 @@ CREATE TABLE Teacher (
     CONSTRAINT fk_teacher_class FOREIGN KEY (class_id) REFERENCES Class(class_id),
     CONSTRAINT uk_teacher_class UNIQUE (class_id),
     CONSTRAINT chk_teacher_gender CHECK (gender IN ('男', '女'))
-) ENGINE=InnoDB COMMENT='班主任表';
+)COMMENT='班主任表';
 
 CREATE UNIQUE INDEX idx_teacher_class_id ON Teacher(class_id);
 
@@ -95,7 +95,7 @@ CREATE TABLE LeaveRecord (
     CONSTRAINT fk_leave_student  FOREIGN KEY (student_id) REFERENCES Student(student_id),
     CONSTRAINT fk_leave_teacher  FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id),
     CONSTRAINT chk_leave_date   CHECK (end_date >= start_date)
-) ENGINE=InnoDB COMMENT='请假记录表';
+)COMMENT='请假记录表';
 
 CREATE INDEX idx_leave_student_id ON LeaveRecord(student_id);
 CREATE INDEX idx_leave_status     ON LeaveRecord(status);
